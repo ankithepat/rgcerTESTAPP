@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "498406814073",
+    "firebase_url": "https://rgcer-48afc.firebaseio.com",
+    "project_id": "rgcer-48afc",
+    "storage_bucket": "rgcer-48afc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498406814073:android:da6edef3082a71bb",
+        "android_client_info": {
+          "package_name": "grade.example.com.rgcer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498406814073-c64edq4cndl9uioels099pmtgf662kt3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "grade.example.com.rgcer",
+            "certificate_hash": "1651013f8ce3225687420e8e6858b5d745d383e4"
+          }
+        },
+        {
+          "client_id": "498406814073-7inodqhiuppf3m4j6p4laligt3gfgslv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "grade.example.com.rgcer",
+            "certificate_hash": "af6dd94b7b6abc55db49e6db1146c6c646862013"
+          }
+        },
+        {
+          "client_id": "498406814073-s9j4o8bqn4cuvkbbgliqsge664r0643i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqvTfBRkcwdeZc3K_5yuIgfWrDIdrh2O4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498406814073-s9j4o8bqn4cuvkbbgliqsge664r0643i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
