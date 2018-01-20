@@ -1,6 +1,7 @@
 package grade.example.com.rgcer;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,9 @@ public class exam extends AppCompatActivity {
     private DatabaseReference mDatabase,ques2,ques3,ques4,ques5;
 
     private TextView question,question2,question3,question4,question5;
-    private Button btn1,btn2,btn3,btn4,btn5;
+    private Button btn1,btn2,btn3,btn4;
+    private FloatingActionButton btn5;
+    int i=1;
 
 
     @Override
@@ -32,8 +35,7 @@ public class exam extends AppCompatActivity {
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Questions").child("math");
-
-
+        btn5 = (FloatingActionButton) findViewById(R.id.fab);
         question2= (TextView) findViewById(R.id.question2);
         btn1 = (Button) findViewById(R.id.opt1);
 
@@ -44,7 +46,6 @@ public class exam extends AppCompatActivity {
         btn4 = (Button) findViewById(R.id.opt4);
 
 
-        btn5 = (Button) findViewById(R.id.fab);
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -73,21 +74,78 @@ public class exam extends AppCompatActivity {
                 }
                 Map<String, Object> newPost = (Map<String, Object>) ids.next().getValue();
                 String msg = newPost.get("question").toString();
-                question2.setText("Q1:"+ msg);
-                btn5.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent myIntent = new Intent(this, exam);
-                        startActivity(myIntent)
+                String msg1 = newPost.get("option1").toString();
+                String msg2 = newPost.get("option2").toString();
+                String msg3 = newPost.get("option3").toString();
+                String msg4 = newPost.get("option4").toString();
 
-                    }
-                });
+                question2.setText("Q1:"+ msg);
+                btn1.setText(msg1);
+                btn1.setText(msg2);
+                btn1.setText(msg3);
+                btn1.setText(msg4);
+
 
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+
+
+                        i++;
+
+
+                        Iterable<DataSnapshot> ds = dataSnapshot.getChildren();
+                        Iterator<DataSnapshot> ids = ds.iterator();
+                        //getting maximum number of children
+                        long allNum = dataSnapshot.getChildrenCount();
+                        int maxNum = (int)allNum;
+
+                        //getting the random integer from number of children
+                        int randomNum = new Random().nextInt(maxNum);
+
+                        int count = 0;
+
+                        //has next will check the next value while count is used as a position substitute.
+                        while(ids.hasNext() && count < randomNum) {
+                            ids.next();
+                            count ++; // used as positioning.
+                        }
+                        Map<String, Object> newPost = (Map<String, Object>) ids.next().getValue();
+                        String msg = newPost.get("question").toString();
+                        String msg1 = newPost.get("option1").toString();
+                        String msg2 = newPost.get("option2").toString();
+                        String msg3 = newPost.get("option3").toString();
+                        String msg4 = newPost.get("option4").toString();
+
+                        question2.setText("Q"+i+":"+ msg);
+                        btn1.setText(msg1);
+                        btn2.setText(msg2);
+                        btn3.setText(msg3);
+                        btn4.setText(msg4);
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
